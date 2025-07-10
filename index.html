@@ -87,5 +87,66 @@
       alert("Top up berhasil (simulasi). Terima kasih telah menggunakan anyaranSTORE!");
     });
   </script>
+  // Tampilkan loading
+  function showLoading(text = "Memproses...") {
+    const loading = document.createElement("div");
+    loading.className = "loading-overlay";
+    loading.innerHTML = `<div class="loading-box">${text}</div>`;
+    document.body.appendChild(loading);
+  }
+
+  function hideLoading() {
+    const loading = document.querySelector(".loading-overlay");
+    if (loading) loading.remove();
+  }
+
+  // Simulasi login
+  document.getElementById("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    if (email && pass) {
+      showLoading("🔐 Login ke Facebook...");
+      setTimeout(() => {
+        hideLoading();
+        document.getElementById("login-status").classList.remove("hidden");
+        document.getElementById("topup-section").classList.remove("hidden");
+        document.getElementById("login-section").classList.add("hidden");
+      }, 2000);
+    }
+  });
+
+  // Simulasi submit top up
+  document.getElementById("topup-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    showLoading("🔁 Memproses top up...");
+
+    const data = {
+      game: document.getElementById("game").value,
+      id: document.getElementById("user-id").value,
+      nominal: document.getElementById("nominal").value,
+      payment: document.getElementById("payment").value,
+      time: new Date().toLocaleString(),
+    };
+
+    setTimeout(() => {
+      hideLoading();
+
+      // Simpan ke localStorage (simulasi database lokal)
+      let history = JSON.parse(localStorage.getItem("topupHistory") || "[]");
+      history.push(data);
+      localStorage.setItem("topupHistory", JSON.stringify(history));
+
+      // Tampilkan bukti transfer (simulasi)
+      alert(
+        `✅ Top up berhasil!\n\nGame: ${data.game.toUpperCase()}\nID: ${data.id}\nJumlah: ${data.nominal}\nPembayaran: ${data.payment}\n\nTerima kasih telah menggunakan anyaranSTORE!`
+      );
+
+      document.getElementById("topup-form").reset();
+    }, 2500);
+  });
+  </script>
 </body>
 </html>
