@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>anyaranSTORE - Top Up Game Murah</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>anyaranSTORE</h1>
+    <p>Top Up ML & FF Lebih Murah dari Codashop!</p>
+  </header>
+
+  <section id="login">
+    <button onclick="loginFacebook()">🔵 Login via Facebook untuk Bonus Diamond</button>
+    <p id="bonus-info" class="hidden">✅ Kamu login! Bonus diamond akan ditambahkan otomatis 🎁</p>
+  </section>
+
+  <main>
+    <form id="topup-form">
+      <label for="game">Pilih Game:</label>
+      <select id="game" name="game" required>
+        <option value="">-- Pilih Game --</option>
+        <option value="ml">Mobile Legends</option>
+        <option value="ff">Free Fire</option>
+      </select>
+
+      <label for="user-id">ID Pemain:</label>
+      <input type="text" id="user-id" placeholder="Masukkan ID Game Anda" required />
+
+      <label for="nominal">Nominal Top Up:</label>
+      <select id="nominal" name="nominal" required>
+        <option value="">-- Pilih Nominal --</option>
+        <option value="10k">86 Diamonds - Rp9.800</option>
+        <option value="20k">172 Diamonds - Rp18.900</option>
+        <option value="50k">514 Diamonds - Rp46.000</option>
+      </select>
+
+      <label for="payment">Metode Pembayaran:</label>
+      <select id="payment" name="payment" required>
+        <option value="">-- Pilih Pembayaran --</option>
+        <option value="qris">QRIS</option>
+        <option value="dana">Dana</option>
+        <option value="ovo">OVO</option>
+        <option value="gopay">GoPay</option>
+        <option value="transfer">Transfer Bank</option>
+      </select>
+
+      <button type="submit">🔽 Top Up Sekarang</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 anyaranSTORE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function loginFacebook() {
+      document.getElementById("bonus-info").classList.remove("hidden");
+      alert("Login via Facebook berhasil! Bonus diamond aktif.");
+    }
+
+    document.getElementById("topup-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Pesanan Top Up berhasil dikirim!\n(Koneksi pembayaran akan ditambahkan nanti)");
+    });
+  </script>
+</body>
+</html>
